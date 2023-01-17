@@ -267,7 +267,6 @@ endmodule
 
 module sipround (
     input             clk,
-    input             reset_n,
     input      [63:0] iv0,
     input      [63:0] iv1,
     input      [63:0] iv2,
@@ -282,17 +281,10 @@ module sipround (
     reg [63:0] v0, v1, v2, v3;
 
     always @(posedge clk) begin : latch_input
-        if (~reset_n) begin
-            ov0 <= 0;
-            ov1 <= 0;
-            ov2 <= 0;
-            ov3 <= 0;
-        end else begin
-            ov0 <= v0;
-            ov1 <= v1;
-            ov2 <= v2;
-            ov3 <= v3;
-        end
+        ov0 <= v0;
+        ov1 <= v1;
+        ov2 <= v2;
+        ov3 <= v3;
     end
 
     always @* begin : comb_sipround
